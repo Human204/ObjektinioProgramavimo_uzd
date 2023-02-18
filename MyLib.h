@@ -15,3 +15,4 @@ using std::setw;
 using std::string;
 using std::sort;
 using std::rand;
+using std::fixed;
