@@ -13,3 +13,5 @@ using std::right;
 using std::setprecision;
 using std::setw;
 using std::string;
+using std::sort;
+using std::rand;
