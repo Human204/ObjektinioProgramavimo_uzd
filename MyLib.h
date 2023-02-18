@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include<vector>
 
 using std::cin;
 using std::copy;
@@ -16,3 +17,4 @@ using std::string;
 using std::sort;
 using std::rand;
 using std::fixed;
+using std::vector;

@@ -2,8 +2,7 @@
 const int paz_sk = 5;
 struct studentas {
   string vardas = "", pavarde = "";
-  // int *paz=nullptr;
-  int *paz=new int [paz_sk];
+  vector<int> paz;
   int egz=0;
   double vid=0.0;
   double med=0.0;
@@ -22,28 +21,26 @@ int main(){
     int n=1;
     string tipas;
     char pabaiga;
+    studentas temp2;
     while(true){
       cout<<"Skaiciuoti vidurki ar mediana?(vid/med): ";
       cin>>tipas;
       cin.ignore(10000,'\n');
       if(tipas=="vid"||tipas=="med")break;
     }
-    studentas *grupe;
-    grupe=new studentas[n];
-    Irasymas(grupe[n-1]);
+    vector <studentas>grupe;
+    grupe.reserve(10);
+    Irasymas(temp2);
+    grupe.push_back(temp2);
     while(true){
       cout<<"Ar norite testi ivesti? (y/n) ";
       cin>>pabaiga;
       cin.ignore(10000,'\n');
       if(pabaiga=='y'||pabaiga=='Y'){
-        studentas *temp2=new studentas[n];
-        copy(grupe,grupe+n,temp2);
-        delete[] grupe;
-        grupe=new studentas[n+1];
-        copy(temp2,temp2+n,grupe);
         n++;
-        delete[] temp2;
-        Irasymas(grupe[n-1]);
+        // grupe.resize(n);
+        Irasymas(temp2);
+        grupe.push_back(temp2);
       }
       else if (pabaiga=='n'||pabaiga=='N')break;
       else cout<<"Iveskite y arba n: ";
@@ -102,7 +99,7 @@ void Irasymas(studentas &temp){
         else if(arr[i]==0)break;
         cin.clear();
       }
-      cin.ignore(10000,'\n');
+      cin.ignore(1000,'\n');
       cout<<"Iveskite egzamino pazymi: ";
       cin>>temp.egz;
       cin.ignore(10000,'\n');
@@ -111,7 +108,7 @@ void Irasymas(studentas &temp){
     else cout<<"Iveskite y arba n: ";
   }
   for(int i=0;i<paz_sk;i++){
-      temp.paz[i]=arr[i];
+      temp.paz.push_back(arr[i]);
     }
 }
 
