@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include<vector>
+#include<fstream>
+#include<tuple>
 
 using std::cin;
 using std::copy;
@@ -18,3 +20,9 @@ using std::sort;
 using std::rand;
 using std::fixed;
 using std::vector;
+using std::ifstream;
+using std::ofstream;
+using std::getline;
+using std::istringstream;
+using std::stoi;
+using std::tie;
