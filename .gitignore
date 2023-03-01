@@ -33,3 +33,5 @@
 
 .vscode
 dest.txt
+main(masyvai).cpp
+*.txt

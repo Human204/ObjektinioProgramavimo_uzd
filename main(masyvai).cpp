@@ -3,11 +3,12 @@ const int paz_sk = 5;
 struct studentas {
   string vardas = "", pavarde = "";
   // int *paz=nullptr;
-  int *paz=new int [paz_sk];
+  // int paz[paz_sk];
   int egz=0;
   double vid=0.0;
   double med=0.0;
   double galutinis=0.0;
+  int paz_sk=0;
 };
 
 void Irasymas(studentas &temp);
@@ -19,7 +20,7 @@ void out(studentas &temp);
 
 int main(){
     srand(time(NULL));
-    int n=1;
+    int n=1, paz_sk;
     string tipas;
     char pabaiga;
     while(true){
