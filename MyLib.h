@@ -7,6 +7,8 @@
 #include<fstream>
 #include<tuple>
 
+
+
 using std::cin;
 using std::copy;
 using std::cout;
@@ -26,3 +28,13 @@ using std::getline;
 using std::istringstream;
 using std::stoi;
 using std::tie;
+
+struct studentas {
+  string vardas = "", pavarde = "";
+  vector<int8_t> paz;
+  int egz=0;
+  double vid=0.0;
+  double med=0.0;
+  double galutinis=0.0;
+  double galutinis2=0.0;
+};
