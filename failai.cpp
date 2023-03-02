@@ -48,3 +48,41 @@ void outf(vector<studentas> &temp){
     }
     fout.close();
 }
+
+void sukurtifaila(int filesize,int ndsk){
+  std::random_device rd;
+  std::mt19937 mt (rd());
+  std::uniform_int_distribution<int> dist(0,10);
+  std::stringstream ss,nd;
+  int paz_temp;
+  vector<stud> studentai;
+  studentai.reserve(filesize);
+  stud temp;
+  ss<<"Stud"<<filesize<<".txt";
+  // vector<string>va,pa;
+  string failas = ss.str(),nd_tekstas;
+  ofstream fout (failas);
+  fout<<setw(15)<<"Vardas"<<setw(15)<<"Pavarde";
+  for(int i=0;i<ndsk;i++){
+    nd<<"ND"<<(ndsk+1);
+    nd_tekstas=nd.str();
+    fout<<setw(4)<<nd_tekstas;
+    nd.str(string());nd.clear();
+  }
+  std::stringstream vardas, pavarde;
+  for(int i=0;i<filesize;i++){
+    vardas<<"Vardas"<<(filesize+1);
+    pavarde<<"Pavarde"<<(filesize+1);
+    temp.vardas=vardas.str();temp.pavarde=pavarde.str();
+    temp.pazymiai.reserve(ndsk);
+    for(int j=0;j<ndsk;j++){
+      paz_temp=dist(mt);
+      temp.pazymiai.push_back(paz_temp);
+    }
+    temp.egzaminas=dist(mt);
+    studentai.push_back(temp);
+    vardas.str(string());vardas.clear();
+    pavarde.str(string());pavarde.clear();
+  }
+
+}

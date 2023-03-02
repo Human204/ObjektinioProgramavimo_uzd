@@ -6,7 +6,7 @@
 #include<vector>
 #include<fstream>
 #include<tuple>
-
+#include<random>
 
 
 using std::cin;
