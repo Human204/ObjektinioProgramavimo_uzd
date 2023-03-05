@@ -6,20 +6,22 @@
 
 int main(){
     srand(time(NULL));
-    int n=1,paz_sk;
+    int n=1,paz_sk,programos_tipas;
     string tipas,failas_ar_ranka,failas;
     char pabaiga;
     studentas temp2;
     while(true){
-      cout<<"ar noresite duomenis skaityti is failo ar irasyti ranka? (failas/ranka) ";
-      cin>>failas_ar_ranka;
+      // cout<<"ar noresite duomenis skaityti is failo ar irasyti ranka? (failas/ranka) ";
+      cout<<"1. duomenu irasymas ranka\n2. duomenu skaitymas is failo\n3. failo sukurimas\n";
+      // cin>>failas_ar_ranka;
+      cin>>programos_tipas;
       cin.ignore(1000,'\n');
-      if(failas_ar_ranka=="failas"||failas_ar_ranka=="ranka")break;
+      if(programos_tipas==1||programos_tipas==2||programos_tipas==3)break;
     }
     std::stringstream eilute;
     vector <studentas>grupe;
     grupe.reserve(1000000);
-    if(failas_ar_ranka=="ranka"){
+    if(programos_tipas==1){
       while(true){
       cout<<"Skaiciuoti vidurki ar mediana?(vid/med): ";
       cin>>tipas;
@@ -69,7 +71,7 @@ int main(){
         out(grupe[i]);
       }
     }
-    else{
+    else if(programos_tipas==2){
       cout<<"Iveskite failo pavadinima: ";
       cin>>failas;
       ifstream fin;
@@ -93,6 +95,16 @@ int main(){
       fin.close();
       sort(grupe.begin(),grupe.end()-1,palygintivardus);
       outf(grupe);
+    }
+    else if(programos_tipas==3){
+      int failo_dydis,nd_skaicius;
+      cout<<"Kokio dydzio faila norite sukurti?\n";
+      cin>>failo_dydis;
+      cin.ignore(1000,'\n');
+      cout<<"Kiek namu darbu turi studentai?\n";
+      cin>>nd_skaicius;
+      cin.ignore(1000,'\n');
+      sukurtifaila(failo_dydis,nd_skaicius);
     }
     grupe.clear();
 }

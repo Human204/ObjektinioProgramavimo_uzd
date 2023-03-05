@@ -42,3 +42,6 @@ void galutinis(studentas &temp,string tipas){
 bool palygintivardus(studentas& a, studentas& b){
   return tie(a.vardas,a.pavarde)<tie(b.vardas,b.pavarde);
 }
+bool palygintigalutinius(studentas& a,studentas& b){
+  return a.gal_vid<b.gal_vid;
+}

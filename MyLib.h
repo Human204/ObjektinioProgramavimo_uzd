@@ -7,6 +7,7 @@
 #include<fstream>
 #include<tuple>
 #include<random>
+#include <chrono>
 
 
 using std::cin;
@@ -31,10 +32,12 @@ using std::tie;
 
 struct studentas {
   string vardas = "", pavarde = "";
-  vector<int8_t> paz;
+  // vector<int8_t> paz;
+  vector<int> paz;
   int egz=0;
   double vid=0.0;
   double med=0.0;
   double galutinis=0.0;
   double galutinis2=0.0;
+  double gal_vid=0.0;
 };
