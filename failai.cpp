@@ -50,6 +50,7 @@ void outf(vector<studentas> &temp){
 }
 
 void sukurtifaila(int filesize,int ndsk){
+  int temp_egz;
   std::random_device rd;
   std::mt19937 mt (rd());
   std::uniform_int_distribution<int> dist(0,10);
@@ -85,13 +86,13 @@ void sukurtifaila(int filesize,int ndsk){
       paz_temp=0;
     }
     temp.egz=dist(mt);
+    fout<<setw(4)<<left<<temp.egz<<'\n';
     vidurkis(temp);
     mediana(temp);
     galutinis(temp,"failas");
     temp.gal_vid=(temp.galutinis+temp.galutinis2)/2;
     studentai.push_back(temp);
     temp={};
-    fout<<setw(4)<<left<<temp.egz<<endl;
     vardas.str(string());vardas.clear();
     pavarde.str(string());pavarde.clear();
   }
