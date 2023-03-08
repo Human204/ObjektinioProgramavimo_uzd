@@ -14,6 +14,7 @@ void Skaitymas(vector<studentas> &temp,std::stringstream &temp2){
       break;
     } 
   }
+  Timer t_failas,t_vis;
   while(temp2>>temp3.vardas>>temp3.pavarde){
       for(int i=0;i<l;i++){
       temp3.paz.reserve(l);
@@ -28,6 +29,9 @@ void Skaitymas(vector<studentas> &temp,std::stringstream &temp2){
     galutinis(temp3,"failas");
     temp.push_back(temp3);
   }
+  cout<<"Failo skaitymas uztruko: "<<t_failas.elapsed()<<endl;
+  isskaidymas(temp);
+  cout<<"Visas programos laikas: "<<t_vis.elapsed()<<endl;
   
 }
 
@@ -46,6 +50,7 @@ void outf(vector<studentas> &temp){
       fout<<std::fixed;
       fout<<temp[i].galutinis2<<'\n';
     }
+    
     fout.close();
 }
 
@@ -57,10 +62,7 @@ void sukurtifaila(int filesize,int ndsk){
   std::stringstream ss,nd;
   int paz_temp;
   double laikas;
-  vector <studentas> studentai;
-  studentai.reserve(filesize);
-  studentas temp;
-  Timer t_vis,t_dal;
+  Timer t_dal;
   ss<<"Stud"<<filesize<<".txt";
   string failas = ss.str(),nd_tekstas;
   ofstream fout (failas);
@@ -76,30 +78,17 @@ void sukurtifaila(int filesize,int ndsk){
   for(int i=0;i<filesize;i++){
     vardas<<"Vardas"<<(i+1);
     pavarde<<"Pavarde"<<(i+1);
-    temp.vardas=vardas.str();temp.pavarde=pavarde.str();
-    fout<<setw(15)<<left<<temp.vardas<<setw(15)<<left<<temp.pavarde;
-    temp.paz.reserve(ndsk);
+    fout<<setw(15)<<left<<vardas.str()<<setw(15)<<left<<pavarde.str();
     for(int j=0;j<ndsk;j++){
-      paz_temp=dist(mt);
-      temp.paz.push_back(paz_temp);
-      fout<<setw(4)<<left<<temp.paz[j];
+      fout<<setw(4)<<left<<dist(mt);
       paz_temp=0;
     }
-    temp.egz=dist(mt);
-    fout<<setw(4)<<left<<temp.egz<<'\n';
-    vidurkis(temp);
-    mediana(temp);
-    galutinis(temp,"failas");
-    temp.gal_vid=(temp.galutinis+temp.galutinis2)/2;
-    studentai.push_back(temp);
-    temp={};
+    fout<<setw(4)<<left<<dist(mt)<<'\n';
     vardas.str(string());vardas.clear();
     pavarde.str(string());pavarde.clear();
   }
-  cout<<"Failo kurimas ir duomenu saugojimas uztruko: "<<t_dal.elapsed()<<endl;
-  isskaidymas(studentai);
-  studentai.clear();
-  cout<<"Visas programos veikimo laikas: "<<t_dal.elapsed()<<endl;
+  fout.close();
+  cout<<"Failo kurimas uztruko: "<<t_dal.elapsed()<<endl;
 }
 
 void isskaidymas(vector<studentas> &studentai){
@@ -110,12 +99,18 @@ void isskaidymas(vector<studentas> &studentai){
   t_dal.reset();
   vector<studentas> cringe,based;
   cringe.reserve(studentai.size()*0.7);based.reserve(studentai.size()*0.7);
-  for(int i=0;i<studentai.size();i++){
-    if(studentai[i].gal_vid<5){
-      cringe.push_back(studentai[i]);
+  for(studentas &i : studentai){
+    if(i.galutinis<5){
+      cringe.push_back(i);
     }
-    else based.push_back(studentai[i]);
+    else based.push_back(i);
   }
+  // for(int i=0;i<studentai.size();i++){
+  //   if(studentai[i].galutinis<5){
+  //     cringe.push_back(studentai[i]);
+  //   }
+  //   else based.push_back(studentai[i]);
+  // }
   studentai.clear();
   cout<<"Studentu suriusiavimas i 2 dalis uztruko: "<<t_dal.elapsed()<<endl;
   t_dal.reset();
@@ -134,12 +129,12 @@ void out_failo_sukurimas(vector<studentas> &temp,string tipas){
   ss<<tipas<<".txt";
   file=ss.str();
   ofstream fout(file);
-  fout<<left<<setw(15)<<"Vardas"<<setw(15)<<"Pavarde"<<setw(13)<<"Galutiniu vid\n";
+  fout<<left<<setw(15)<<"Vardas"<<setw(15)<<"Pavarde"<<setw(13)<<"Gal vid\n";
   fout<<"-----------------------------------------------\n";
   for(int i=0;i<temp.size();i++){
     fout<<setw(15)<<left<<temp[i].vardas<<setw(15)<<left<<temp[i].pavarde;
     fout.precision(2);
     fout<<std::fixed;
-    fout<<temp[i].gal_vid<<'\n';
+    fout<<temp[i].galutinis<<'\n';
   }
 }

@@ -93,8 +93,8 @@ int main(){
       eilute<<fin.rdbuf();
       Skaitymas(grupe,eilute);
       fin.close();
-      sort(grupe.begin(),grupe.end()-1,palygintivardus);
-      outf(grupe);
+      // sort(grupe.begin(),grupe.end()-1,palygintivardus);
+      // outf(grupe);
     }
     else if(programos_tipas==3){
       int failo_dydis,nd_skaicius;
